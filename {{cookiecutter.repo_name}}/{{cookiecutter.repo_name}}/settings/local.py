@@ -11,8 +11,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': '{{cookiecutter.repo_name}}',
-        'USER': 'postgres',
-        'PASSWORD': '',
+        'USER': '{{cookiecutter.repo_name}}',
+        'PASSWORD': '{{cookiecutter.repo_name}}',
         'HOST': 'localhost',
         'PORT': '',
     }
