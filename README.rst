@@ -1,8 +1,8 @@
 cookiecutter-simple-django
 ==========================
 
-A cookiecutter_ template for Django.
-
+A cookiecutter_ template for Django. Plus a Vagrant machine configuration. Plus nginx+gunicorn+postgres inside that machine.
+ 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 
 Description
