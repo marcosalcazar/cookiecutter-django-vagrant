@@ -16,10 +16,8 @@ source /vagrant/{{cookiecutter.repo_name}}_venv/bin/activate
 apt-get install -y libpq-dev postgresql postgresql-contrib
 pip install psycopg2
 
-su - postgres -c 'createdb {{cookiecutter.repo_name}}'
-su - postgres -c 'createuser {{cookiecutter.repo_name}}'
-sudo -u postgres psql -c "alter user {{cookiecutter.repo_name}} with password '{{cookiecutter.repo_name}}';"
-sudo -u postgres psql -c "grant all privileges on database {{cookiecutter.repo_name}} to {{cookiecutter.repo_name}};"
+chmod +x config/vagrant/postgresql.sh
+./config/vagrant/postgresql.sh
 
 # SUPERVISOR #
 apt-get install -y supervisor
