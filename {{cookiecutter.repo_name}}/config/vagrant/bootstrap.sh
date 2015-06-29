@@ -34,7 +34,7 @@ service nginx restart
 
 # DJANGO PROJECT #
 pip install -U -r /vagrant/requirements.txt
-#cp /vagrant/config/vagrant/django_settings_dev.txt /vagrant/{{cookiecutter.repo_name}}/{{cookiecutter.repo_name}}/settings-dev.py
+apt-get install gettext #for translations
 
 cd /vagrant
 python manage.py migrate #--settings={{cookiecutter.repo_name}}.settings-dev
