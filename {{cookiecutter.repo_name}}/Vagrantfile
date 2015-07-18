@@ -27,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network "private_network", ip: "192.168.33.10"
-  config.vm.host_name = "cabaneiro.dev"
+  config.vm.host_name = "{{cookiecutter.repo_name}}.dev"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   # SETTINGS FOR PRODUCTION
   # config.vm.network "public_network", bridge: 'wlan0'
-  # config.vm.host_name = "cabaneiro.dev"
+  # config.vm.host_name = "{{cookiecutter.repo_name}}.dev"
   # config.vm.network "forwarded_port", guest: 80, host: 80
   # config.ssh.port = '2222'
   # config.ssh.guest_port = '2223'

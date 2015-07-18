@@ -6,35 +6,34 @@ apt-get -y upgrade
 # Install general packages #
 apt-get install -y git python-dev
 
-# VIRTUALENV #
+# Install other required packages
 apt-get install -y python-virtualenv
+apt-get install -y libpq-dev postgresql postgresql-contrib
+apt-get install -y supervisor
+apt-get install -y nginx
 
-virtualenv /vagrant/{{cookiecutter.repo_name}}_venv
-source /vagrant/{{cookiecutter.repo_name}}_venv/bin/activate
+# Create virtualenv #
+virtualenv /{{cookiecutter.repo_name}}_venv
+source /{{cookiecutter.repo_name}}_venv/bin/activate
+
+# INSTALL pip packages #
+cd /vagrant
+pip install -U -r requirements.txt
 
 # POSTGRESQL #
-apt-get install -y libpq-dev postgresql postgresql-contrib
-pip install psycopg2
-
 chmod +x config/vagrant/postgresql.sh
 ./config/vagrant/postgresql.sh
+
+# make all
 
 # SUPERVISOR #
 apt-get install -y supervisor
 
 # GUNICORN #
-pip install gunicorn
 cp /vagrant/config/vagrant/gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
 service supervisor restart
 
 # NGINX #
-apt-get install -y nginx
 cp /vagrant/config/vagrant/nginx.txt /etc/nginx/sites-available/default
 service nginx restart
 
-# DJANGO PROJECT #
-pip install -U -r /vagrant/requirements.txt
-apt-get install gettext #for translations
-
-cd /vagrant
-python manage.py migrate #--settings={{cookiecutter.repo_name}}.settings-dev
